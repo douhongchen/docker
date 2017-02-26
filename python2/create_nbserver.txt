@@ -1,0 +1,24 @@
+首先要生成密码，打开python终端。
+
+In [1]: from IPython.lib import passwd
+
+In [2]: passwd()
+Enter password: pbalpha2017
+Verify password:
+Out[2]: 'sha1:0e422dfccef2:84cfbcb
+b3ef95872fb8e23be3999c123f862d856'
+接下来生成秘钥：
+
+openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout mycert.pem -out /home/work/.jupyter/mycert.pem
+创建一个服务器配置：
+
+ipython profile create nbserver
+编辑文件jupyter_notebook_config.py，在~/.jupyter/文件夹里，
+
+c.NotebookApp.password = u'sha1:。。。。。。。。。。。'
+c.NotebookApp.certfile = u'/root/.jupyter/mycert.pem'
+c.NotebookApp.ip = '*'
+c.NotebookApp.port = 9999
+最后启动服务器：
+
+ipython notebook --profile=nbserver
