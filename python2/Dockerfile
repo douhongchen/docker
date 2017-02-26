@@ -62,6 +62,5 @@ COPY mycert.pem /home/work/.jupyter/
 RUN chown -R work:work /home/work/.jupyter
 RUN sudo -iu work ipython profile create nbserver
 
-
 ### CMD ["/usr/sbin/sshd", "-D"]
 CMD ["/usr/bin/supervisord"]
