@@ -56,9 +56,11 @@ RUN mkdir -p /var/log/supervisor
 COPY supervisord.conf /etc/supervisord.conf
 
 # 配置jupyter
+RUN sudo -iu work mkdir -p /home/work/data/
 COPY jupyter_notebook_config.py /home/work/.jupyter/
 COPY mycert.pem /home/work/.jupyter/
-RUN sudo -iu ipython profile create nbserver
+RUN chown -R work:work /home/work/.jupyter
+RUN sudo -iu work ipython profile create nbserver
 
 
 ### CMD ["/usr/sbin/sshd", "-D"]
