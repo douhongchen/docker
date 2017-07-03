@@ -18,6 +18,7 @@ RUN yum -y install tkinter psmisc
 ### 安装openssh-server和sudo软件包
 RUN yum install -y openssh-server openssh-clients openssl sudo git subversion which
 RUN yum install -y python-devel.x86_64
+RUN yum install -y zlib-devel bzip2-devel openssl-devel ncurses-devel libxslt-devel libxml2-devel
 
 ### 将sshd的UsePAM参数设置成no
 RUN sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
